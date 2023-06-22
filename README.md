@@ -14,9 +14,9 @@ Di conseguenza, se i data points nella varietà dei dati normali e anomali posso
 
 Per essere in grado di riprodurre gli esperimenti è necessario installare le seguenti componenti:
 
-- ALAD: (https://github.com/houssamzenati/Adversarially-Learned-Anomaly-Detection);
-- ARN: (https://github.com/arnwg/arn);
-- CICIDS18 e ADFANet dataset;
+- [ALAD](https://github.com/houssamzenati/Adversarially-Learned-Anomaly-Detection);
+- [ARN](https://github.com/arnwg/arn);
+- i dataset CICIDS18 e ADFANet;
 - l'enviroment conda attacchi.yml fornito in questo github.
 
 ## Configurazione

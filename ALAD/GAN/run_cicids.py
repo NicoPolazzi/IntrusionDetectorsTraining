@@ -278,7 +278,7 @@ def train_and_test(nb_epochs, weight, method, degree, random_seed):
             attacks[i:j]=sess.run(generator, feed_dict=feed_dict)
         
         np.save('/home/polazzi/eGAN/Efficient-GAN-Anomaly-Detection/data/cicids_generated_attacks.npy', attacks)
-#        np.save('/home/notebook/attack_generation/saved_attacks_generated/cicids/ALAD-egan.npy', attacks)
+
 
         logger.warn('Testing evaluation...')
         inds = rng.permutation(testx.shape[0])

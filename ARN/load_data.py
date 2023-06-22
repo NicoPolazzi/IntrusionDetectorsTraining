@@ -607,11 +607,6 @@ def get_CICIDS(PATH, seed, scale = True, show = True):
 
     train=pd.concat([x_train, y_train_df], axis=1)
     test=pd.concat([x_test, y_test_df], axis=1)
-
-#    print("x_train {} ".format(x_train.shape))
-#    print("y_train {}  {}".format(y_train_df.shape, y_train_df['label'].unique()))
-#    print("y_test {}  {}".format(y_test_df.shape, y_test_df['label'].unique()))
-#    print("train {}  {}".format(train.shape, train['label'].unique()))
         
 #    np_train=np.load('/home/polazzi/datasets/adfa/train_X_no_attack.npy')
 #    np_train=np.hstack((np_train, np.zeros((np_train.shape[0],1))))
@@ -690,7 +685,6 @@ def get_CICIDS(PATH, seed, scale = True, show = True):
 
         selected_columns[name] = tmp
 
-#    print(x_train.dtypes)
 #    x_train.apply(pd.to_numeric)
 #    x_test.apply(pd.to_numeric)    
 #    x_val.apply(pd.to_numeric)

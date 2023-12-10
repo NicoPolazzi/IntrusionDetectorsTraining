@@ -1,34 +1,36 @@
 # IntrusionDetectorsTraining
 
-**Repository  della tesi: Nicolò Polazzi, "Addestramento di rilevatori di intrusioni tramite generazione di attacchi: approcci dallo stato dell’arte", Corso di Laurea in Informatica, AA. 2022-2023. Relatore: Andrea Ceccarelli.**
+**Thesis repository: Nicolò Polazzi, "Addestramento di rilevatori di intrusioni tramite generazione di attacchi: approcci dallo stato dell’arte",  Computer Science Bachelor's Degree, AY 2022-2023. Supervisor: Andrea Ceccarelli.**
 
-## Obiettivo e approccio
+## Objective and Method
 
-Lo scopo è quello di generare l'effetto degli attacchi zero-day, in moda da arricchire un dataset composto da dati normali. In teoria, se riusciamo a modellare l'effetto degli attacchi, allora la presenza degli zero-day nel momento di test porterà a un comportamento del sistema che  è stato già osservato nell'attimo del training. Nel caso in cui si riuscisse ad ottenre quanto detto prima, la pericolosità degli attacchi sconosciuti sarebbe altamente ridotta, perché i loro effetti sono equivalenti a quelli di attacchi conosciuti.
+The objective is to generate the effects of zero-day attacks to enrich a dataset composed of normal data. Theoretically, if we are able to generate attack effects that cover the entire input space, zero-days at test time will lead to a system behaviour that has already been observed at training time. Clearly, if the above is achieved, the dangerousness of unknown attacks is greatly reduced, because their effect is equivalent to the effect of known attacks.
 
-L'assunzione di base è che gli attacchi hanno un effetto visibile su un sistema target, per esempio è possibile catalogarli come anomalie guardando i dati raccolti. Questa assunzione è la base di ogni lavoro nel settore dell'anomaly detection.
-In generale, l'approccio è quello di modellare i dati normali in un iperpiano per scoprire la varietà dei dati normali, e, da questa, identificare i data points fuori dalla varietà. Ogni anomalia sarà descritta da questi data points: attacchi, conosciuti o non, sono descritti da questi data points.
-Di conseguenza, se i data points nella varietà dei dati normali e anomali possono essere identificate, possiamo allenare un Intrusion Detection System in un ambiente supervisionato senza il rischio di attacchi sconosciuti.
+The basic assumption is that attacks have a visible effect on a target system, for example, they can be categorized as anomalies by examining collected data. This assumption constitutes the foundation of all work in the field of anomaly detection.
+In general, the approach is to model normal data on a hyperplane to discovery the variety of normal data and, from this, identify data points outside the variety. Each anomaly will be described by these data points: attacks, whether known or unknown, are characterized by these data points. Consequently, if the data points within the variety of normal and anomalous data can be identified, we can train an Intrusion Detection System in a supervised environment without the risk of unknown attacks.
 
-## Installazione
+## Installation instructions
 
-Per essere in grado di riprodurre gli esperimenti è necessario installare le seguenti componenti:
+In order to reproduce the experiments, it is necessary to install the following components:
 
 - [ALAD](https://github.com/houssamzenati/Adversarially-Learned-Anomaly-Detection);
 - [ARN](https://github.com/arnwg/arn);
-- i dataset CICIDS18 e ADFANet;
-- l'enviroment conda attacchi.yml fornito in questo github.
+- CICIDS18 and ADFANet datasets;
+- conda environment _attacchi.yml_ provided in this GitHub repository.
 
-## Configurazione
+## Configuration
 
-E' necessario impostare i PATH corretti; questi dovrebbero essere directories dove avete i permessi di lettura e scrittura.
+It is necessary to set the correct PATHs. These should be directories where you have read and write permissions.
 
-## Esecuzione
+## Execution
 
-Tutti i comandi devono essere eseguiti nell'ambiente **attacchi** tramite il comando `conda activate attacchi`.
-Consiglio di procedere nell' ordine seguente:
+All commands must be executed in the **attacchi** environment using the following command:`conda activate attacchi`.
+I recommend you to proceed in the following order:
 
-1. Esecuzione di ALAD(eGAN): spostarsi nella cartella dove si è installato ALAD dove si potrà eseguire ALAD sui dataset ADFANet e CICIDS18, per esempio, con i comandi:
+1. ALAD(eGAN) execution.
+   
+   Move to the folder where ALAD is installed, where you can run ALAD on datasets ADFANet and CICIDS18. E.g., you may use the following commands:
+
 ```bash
 python3 main.py gan adfa run --nb_epochs=50 --label=1 --w=0.1 --m='cross-e' --d=2 --rd=42
 ```
@@ -36,11 +38,17 @@ python3 main.py gan adfa run --nb_epochs=50 --label=1 --w=0.1 --m='cross-e' --d=
 python3 main.py gan cicids run --nb_epochs=50 --label=1 --w=0.1 --m='cross-e' --d=2 --rd=42
 ```
 
-2. Esecuzione di ARN: è sufficiente eseguire i notebook *ADFA-ARN_ADFA_REV_Generation.ipynb* e *ADFA-ARN_CICIDS_REV_Generation.ipynb*.
+2. ARN execution.
+   
+   It is sufficient to execute *ADFA-ARN_ADFA_REV_Generation.ipynb* and *ADFA-ARN_CICIDS_REV_Generation.ipynb* notebooks.
 
 
-3. Eseguire i notebook *zero-day attack generation-ADFA.ipynb* e *zero-day attack generation-CICIDS.ipynb*.
+4. Collect the results.
+   
+   Run  *zero-day attack generation-ADFA.ipynb* and *zero-day attack generation-CICIDS.ipynb* notebooks.
 
-L'esecuzione di ALAD e ARN produce un file numpy contenente gli attacchi generati.
+## Output
 
-Tutti gli algoritmi scrivono i risultati nei file *adfa_competitors.csv* e *cicids_competitors.csv*.
+The execution of ALAD and ARN produces a numpy file containing the generated attacks.
+
+All algorithms write the results to the files *adfa_competitors.csv* e *cicids_competitors.csv*.
